@@ -62,7 +62,7 @@ How can we speed up DAX writes?
 
 <img src="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/images/dax-consistency-alice-bob.png">
 
-## Resources
+## References
 
 - [DAX Concepts](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.concepts.html)
 - [DAX Consistency Models](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.consistency.html)
