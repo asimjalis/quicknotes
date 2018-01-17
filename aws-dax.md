@@ -8,7 +8,14 @@
 
 How does DAX use multiple nodes?
 
-- DAX replicates the cache across all nodes for high-availability.
+- DAX designates one of the nodes as the master.
+- The other nodes are read replicas.
+- Reads can be served by the master or a replica.
+- Writes can only be served by the master.
+- Updates to the master are asynchronously replicated to the replicas.
+- If the master fails, a replica is promoted to become the next master.
+- The best practice is to deploy the master and replicas in different
+  availability zones for high-availability.
 
 ## Caching
 
