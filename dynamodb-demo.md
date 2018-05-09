@@ -1,6 +1,5 @@
 ```python
 import boto3
-from pipe import *
 
 # Pretty print.
 import pprint
