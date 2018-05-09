@@ -10,11 +10,9 @@ dynamodb = boto3.resource('dynamodb')
 
 # Check if table exists.
 def table_exists(table_name):
-    return \
-        list(dynamodb.tables.all()) | \
-        select(lambda x: x.name) | \
-        where(lambda name: name == "users") | \
-        count > 0 
+  for x in dynamodb.tables.all():
+    if x == table_name: return True
+  return False
 
 # Create table.
 def table_create(table_name, partition_key, hash_key):
