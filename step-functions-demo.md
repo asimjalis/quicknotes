@@ -1,5 +1,3 @@
-[toc]
-
 # Step Functions
 
 ## State Machine
