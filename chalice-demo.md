@@ -148,10 +148,20 @@ $(document).ready(function(){
 </html>
 ```
 
-## Demo
+## Demo Local
 
-Open `index.html` and make it recognize images.
+To run the service locally run `chalice local`. In `index.html` set
+`service_endpoint` to `local_endpoint`. Open `index.html` and it
+should recognize images.
 
-You can deploy index.html as a static HTML page on S3 to push this
-completely to the cloud.
+## Demo Cloud
 
+To run the service on API Gateway, run `chalice deploy`. In
+`index.html`, paste the API Gateway endpoint for your service into the
+value of `cloud_endpoint`. Set `service_endpoint` to `cloud_endpoint`.
+Open `index.html` and it should recognize images.
+
+## Demo All-In-Cloud
+
+To push the application completely into the cloud deploy `index.html`
+as a static HTML page on S3. 
