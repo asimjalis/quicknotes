@@ -1,6 +1,6 @@
 # SQS SNS PowerShell Demo
 
-```powershell
+```bash
 # Create SNS Topics and capture their ARNs.
 $email_topic_arn = aws sns create-topic --name "EmailSNSTopic" --output text --query TopicArn
 $order_topic_arn = aws sns create-topic --name "OrderSNSTopic" --output text --query TopicArn
