@@ -1,4 +1,6 @@
-# SQS SNS PowerShell Demo
+# SQS and SNS
+
+Here is how to subscribe SQS queues to SNS topics.
 
 ```bash
 # Create SNS Topics and capture their ARNs.
