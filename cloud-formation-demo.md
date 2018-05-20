@@ -10,7 +10,7 @@ second will dequeue a string and return it.
 
 Save this into a file called `demo.yaml`.
 
-```python
+```yaml
 Resources:
   MessageQueue:
     Type: "AWS::SQS::Queue"
@@ -104,7 +104,7 @@ Outputs:
 
 ## Deploy
 
-Next lets deploying the template. 
+Next let's deploying the template. 
 
 ```bash
 # Give CloudFormation stack unique name.
@@ -117,7 +117,7 @@ aws cloudformation deploy --stack-name $StackName \
 
 ## Get Function and Queue Names
 
-Next lets get the names of the functions and the queue. 
+Next let's get the names of the functions and the queue. 
 
 I deliberately did not specify the names in the CloudFormation
 resources. If I had hard-coded the names I would get name collisions
@@ -136,7 +136,7 @@ s13-MessageProducerLambda-177VR7VN5P1UY
 
 Except there is no risk of conflicts.
 
-Lets save the names in environment variables.
+Let's save the names in environment variables.
 
 ```bash
 # Get message producer function name from stack outputs.
