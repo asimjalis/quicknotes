@@ -111,8 +111,10 @@ Next let's deploying the template.
 StackName=s1; 
 
 # Deploy stack. Needs CAPABILITY_IAM since creating roles.
-aws cloudformation deploy --stack-name $StackName \
-  --template-file demo.yaml --capabilities CAPABILITY_IAM
+aws cloudformation deploy \
+  --stack-name $StackName \
+  --template-file demo.yaml \
+  --capabilities CAPABILITY_IAM
 ```
 
 ## Get Function and Queue Names
@@ -169,22 +171,40 @@ to retrieve them from the queue and return them to us.
 
 ```bash
 # Send some messages to the queue.
-aws lambda invoke --function-name $MessageProducerLambda \
-  --payload '"Message 1"' out.txt ; cat out.txt ; echo
-aws lambda invoke --function-name $MessageProducerLambda \
-  --payload '"Message 2"' out.txt ; cat out.txt ; echo 
-aws lambda invoke --function-name $MessageProducerLambda \
-  --payload '"Message 3"' out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageProducerLambda \
+  --payload '"Message 1"' \
+  out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageProducerLambda \
+  --payload '"Message 2"' \
+  out.txt ; cat out.txt ; echo 
+aws lambda invoke \
+  --function-name $MessageProducerLambda \
+  --payload '"Message 3"' \
+  out.txt ; cat out.txt ; echo
 
 # Receive the messages from the queue.
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
 
 # Try receiving more messages.
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
-aws lambda invoke --function-name $MessageConsumerLambda out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
+aws lambda invoke \
+  --function-name $MessageConsumerLambda \
+  out.txt ; cat out.txt ; echo
 ```
 
 # Delete
@@ -194,5 +214,6 @@ delete the stack and all its resources go away.
 
 ```bash
 # Delete the stack.
-aws cloudformation delete-stack --stack-name $StackName
+aws cloudformation delete-stack \
+  --stack-name $StackName
 ```
