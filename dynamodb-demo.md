@@ -34,10 +34,6 @@ if table_exists('orders'):
     dynamodb.meta.client.delete_table(TableName='orders')
 table = table_create('orders', 'customer', 'order')
 
-# Print out some data about the table.
-pp.pprint(table.item_count)
-pp.pprint(table.creation_date_time)
-
 # Put item.
 table.put_item(Item={ 'customer': 'alice', 'order': '001', 'product': 'coffee', 'price': 100 })
 response = table.get_item(Key={ 'customer': 'alice', 'order': '001' })
@@ -75,6 +71,18 @@ pp.pprint(table.scan()['Items'])
 # Delete item.
 table.delete_item(Key={ 'customer': 'alice', 'order': '001' })
 
+response = table.put_item(Item={ 'customer': 'alice', 'order': '001', 'price': 10})
+pp.pprint(response['ResponseMetadata'])
+response = table.put_item(Item={ 'customer': 'alice', 'order': '001', 'price': 20})
+pp.pprint(response['ResponseMetadata'])
+
+# Massive put.
+for i in range(50):
+    customer = 'cust' + str(i)
+    order = '000'
+    response = table.put_item(Item={ 'customer': customer, 'order': order })
+    pp.pprint(response)
+
 # Scan all items.
 pp.pprint(table.scan()['Items'])
 
@@ -90,14 +98,6 @@ with table.batch_writer() as batch:
       'address': { 
         'road': '1 Jefferson Street', 'city': 'Los Angeles', 
         'state': 'CA', 'zipcode': 90001 } })
-
-# Scan all items.
-pp.pprint(table.scan()['Items'])
-
-# Massive batch.
-with table.batch_writer() as batch:
-    for i in range(50):
-        batch.put_item(Item={  'customer': 'cust' + str(i), 'order': '000' })
 
 # Scan all items.
 pp.pprint(table.scan()['Items'])
