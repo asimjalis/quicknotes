@@ -28,7 +28,7 @@ response = queue.send_messages(Entries=[
     { 'Id': '2', 'MessageBody': 'hello' } ])
 pp.pprint(response)
 
-# Processing messages.
+# Process and delete all messages.
 for message in queue.receive_messages():
     pp.pprint(message)
     message.delete()
