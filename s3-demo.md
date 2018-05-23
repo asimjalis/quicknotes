@@ -39,3 +39,32 @@ print 'Presigned URL: ' + presigned_url
 curl --location --upload-file FILE PRESIGNED_URL
 aws s3 cp s3://asimj-demo/1.txt
 ```
+
+## Test List
+
+```bash
+# Create bucket
+aws s3 mb s3://asimj-iad
+
+# Put some objects in it
+echo "hello world" > 1.txt
+aws s3 cp 1.txt s3://asimj-iad/a/b/c/1.txt
+aws s3 cp 1.txt s3://asimj-iad/a-b-c-1.txt
+```
+
+```python
+import boto3
+s3 = boto3.resource('s3')
+bucket = s3.Bucket('asimj-iad')
+
+for f in bucket.objects.all(): print f
+for f in bucket.objects.filter(Prefix='').all(): print f
+
+for f in bucket.objects.filter(Prefix='',Delimiter='/').all(): print f
+
+# Treat "/" as folder delimiter.
+for f in bucket.objects.filter(Prefix='a/b/c/',Delimiter='/').all(): print f
+
+# Treat "-" as folder delimiter.
+for f in bucket.objects.filter(Prefix='',Delimiter='-').all(): print f
+```
