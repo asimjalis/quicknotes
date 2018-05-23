@@ -31,7 +31,7 @@ def table_create(table_name, partition_key, sort_key):
 
 # Create table.
 if table_exists('orders'): 
-    dynamodb.meta.client.delete_table(TableName=table_name)
+    dynamodb.meta.client.delete_table(TableName='orders')
 table = table_create('orders', 'customer', 'order')
 
 # Print out some data about the table.
